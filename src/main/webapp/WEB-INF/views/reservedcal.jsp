@@ -118,17 +118,20 @@ else if("f".equals(reservedcheck)){
 	   %>
 	   <td align="left">  <table border="0" cellspacing=0 cellpadding=0 width="100%" height="100%"  class="calcelltable">
 	   <tr ><td class="day" colspan="2" >
-	   <%if(year>=currentYear&&month>=currentMonth&&i>=currentDate){
-		  %>
-		  <a href="reservedView?year=<%out.print(year);%>&month=<%out.print(month);%>&day=<%=i %>" class="calcelltaleday"><%= i %></a> </td></tr>
-		  <% 
-		   
-		   
-	   }else{
-	   %>
-	  <%=i %> &nbsp;</td></tr>
-	   <%
-	   }
+	   <%if(year>currentYear||(year==currentYear && month > currentMonth)){ // 현재 연월보다 크면 예약가능         
+        %>
+        <a href="reservedView?year=<%out.print(year);%>&month=<%out.print(month);%>&day=<%=i %>" class="calcelltaleday"><%= i %></a> &nbsp;</td></tr>
+        <%                  
+      }else if (year==currentYear && month == currentMonth &&i>=currentDate){ // 월이 같고 날짜가 클경우 예약가능         
+      %>
+     	<a href="reservedView?year=<%out.print(year);%>&month=<%out.print(month);%>&day=<%=i %>" class="calcelltaleday"><%= i %></a> &nbsp;</td></tr>
+      <%
+      }else{ // 그외 불가능
+         
+         %>
+       <%=i %>  &nbsp; </td></tr>
+         <%
+      }
 	   %>
 	   <tr ><td ></td><td >&nbsp; </td></tr>
 	   <%String si=null;

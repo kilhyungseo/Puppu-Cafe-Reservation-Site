@@ -1,9 +1,9 @@
 package com.puppycafe.root.Dto;
 
 public class ReservedCellDto {
-	private String day;
-	private int rstarthour;
-	private int amount;
+	private String day;	//예약일
+	private int rstarthour;	//예약시작시간
+	private int amount;	//마릿수
 	public ReservedCellDto() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -433,7 +433,7 @@ public class PCController {
 				e.printStackTrace();
 			}
 			
-			return "redirect:reservedcal";
+			return "reservedcal";
 		}
 		@RequestMapping(value = "/boardDelete")
 		public String boardDelete(HttpServletRequest request, HttpServletResponse response) {

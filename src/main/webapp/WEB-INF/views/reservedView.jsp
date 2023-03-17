@@ -118,15 +118,11 @@ function yesno(){
       %>
       <td align="left">  <table border="0" cellspacing=0 cellpadding=0 width="100%" height="100%"  class="calcelltable">
       <tr ><td class="day" colspan="2">
-      <%if(year>currentYear||(year==currentYear && month > currentMonth)){ // 현재 연월보다 크면 예약가능
-         
+      <%if(year>currentYear||(year==currentYear && month > currentMonth)){ // 현재 연월보다 크면 예약가능         
         %>
         <a href="reservedView?year=<%out.print(year);%>&month=<%out.print(month);%>&day=<%=i %>" class="calcelltaleday"><%= i %></a> &nbsp;</td></tr>
-        <% 
-         
-         
-      }else if (year==currentYear && month == currentMonth &&i>=currentDate){ // 월이 같고 날짜가 클경우 예약가능
-         
+        <%                  
+      }else if (year==currentYear && month == currentMonth &&i>=currentDate){ // 월이 같고 날짜가 클경우 예약가능         
       %>
      <a href="reservedView?year=<%out.print(year);%>&month=<%out.print(month);%>&day=<%=i %>" class="calcelltaleday"><%= i %></a> &nbsp;</td></tr>
       <%
@@ -189,14 +185,9 @@ function yesno(){
          <%
       }
       %>
-     
-      
-    
-     
       </table>  
       </td>
-      <%
-   
+      <%   
     br++;
     if((br%7)==0 && i!=end) {
      %>
@@ -226,26 +217,19 @@ function yesno(){
      </tr>
      </table>
   
-  
      <table class="reservdtable" border="1" cellspacing=0 cellpadding=0 height="100%">
-     <form action="reserved" method="post" name="reservedform">
+     <form action="reserved" method="post" name="reservedform" >
     <input type="hidden" value="${rdate }" name="rdate">
      <tr ><td class="reservd_top_td">시간</td><td class="reservd_top_td">예약현황</td><td class="reservd_top_td">시간지정</td></tr>
      
-        <c:forEach var="i" begin="9" end="17" step="2"  >
-        
-            
+        <c:forEach var="i" begin="9" end="17" step="2"  >                    
               <tr >
-              
               <td class="reservd_middle_td" >${i }시&nbsp; ~&nbsp;${i+2}시 </td>
               <td class="reservation_dog" >
                  <table border="0" cellspacing=0 cellpadding=0 width="100%" height="100%" >
                     <c:forEach items="${rvdtos }" var="rvdto">
                      
-                       <c:if test="${ i==rvdto.rstarthour }" >
-                          
-                          
-                       
+                       <c:if test="${ i==rvdto.rstarthour }" >                      
                        <tr >
                           <td colspan="1" class="reservation_dog" width=70% >
                              ${rvdto.psspeciesname } :&nbsp; 
@@ -258,42 +242,26 @@ function yesno(){
             
                     </c:forEach>
                  </table>
-                 
                  <% int checkcount=0; %>
                 </td>
-                
-                
-             
-                
                 <c:forEach items="${ hourcheck}" var="check">
-                   
+           
                    <c:if test="${i==check }">
                      <%checkcount++; %>
                      <td class="reservd_middle_td"><input class="bottom_check" type="checkbox" name="check" value="${i }" checked="checked"></td>
                      <input type="hidden" name="hourcheck" value="${i }" name="checkcount">
                   </c:if>
-                  
-                  
                   </c:forEach>
-            
-               
                <%if(checkcount==0){ %>
                <td class="reservd_middle_td"><input class="bottom_check" type="checkbox" name="check" value="${i }"></td>
-               
                <%} %>
-                </tr>     
-                 
-              
+                </tr> 
+                    
         </c:forEach>
         <tr><td  colspan="3" align="center" height="1%" ><input class="bottom_button" type="button" value="예약하기" onclick="yesno()"></td></tr>
-         
-        
          </form>
      </table>
-    
   </div>
-  </td>
-  </tr>
   </table>
   <div style="height:70px">
   </div>
